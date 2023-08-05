@@ -17,6 +17,8 @@
     <!-- MENÚ ENCABEZADO -->
     <header class="header">
         <a href="#" class="logo">Portafolio.</a>
+
+        <div class="bx bx-menu" id="menu-icon"></div>
         <nav class="navbar">
             <a href="#home" style="--i:1" class="active">Inicio</a>
             <a href="#about" style="--i:2">Sobre Mi</a>
@@ -72,75 +74,6 @@
                 aprender
                 y crecer profesionalmente. Me entusiasma formar parte de equipos dinámicos y colaborar en proyectos
                 desafiantes que impulsen el éxito de la empresa. </p>
-
-
-            <div class="fila">
-                <div class="col">
-                    <h3>Datos Personales</h3>
-                    <ul>
-                        <li>
-                            <strong>Teléfono</strong>
-                            312 134 6641
-                        </li>
-                        <li>
-                            <strong>Email</strong>
-                            mc.michellcazares@gmail.com
-                        </li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <h3>Intereses</h3>
-                    <div class="container-interes">
-                        <div class="interes">
-                            <i class='bx bx-code-alt'></i>
-                            <span>Desarrollo</span>
-
-                        </div>
-                        <div class="interes">
-                            <i class='bx bxs-game'></i>
-                            <span>Juegos</span>
-
-                        </div>
-                        <div class="interes">
-                            <i class='bx bxs-music'></i>
-                            <span>Música</span>
-
-                        </div>
-
-                        <div class="interes">
-                            <i class='bx bxl-html5'></i>
-                            <span>HTML</span>
-
-                        </div>
-
-                        <div class="interes">
-                            <i class='bx bxl-css3'></i>
-                            <span>CSS</span>
-
-                        </div>
-
-                        <div class="interes">
-                            <i class='bx bxl-javascript'></i>
-                            <span>JavaScript</span>
-
-                        </div>
-
-                        <div class="interes">
-                            <i class='bx bxl-java'></i>
-                            <span>Java</span>
-
-                        </div>
-
-                        <div class="interes">
-                            <i class='bx bxl-youtube'></i>
-                            <span>YouTube</span>
-
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -204,7 +137,13 @@
                             <div class="year"><i class='bx bxs-calendar'></i> Junio 2023 - Agosto 2023</div>
                             <h3>GENERATION MÉXICO</h3>
                             <p>
-                                Diseñé y desarrollé una página web E-commerce para la venta de Elotes Preparados.
+                                - Participé en el desarrollo de aplicaciones web utilizando tecnologías tanto en el
+                                backend como en el frontend.</br></br>
+                                - Contribuí en la implementación de funcionalidades clave y en la resolución de
+                                problemas técnicos.</br> </br>
+                                - Utilicé tecnologías tales como Java, HTML, CSS, JavaScript, Spring y MySQL.</br></br>
+                                - Liderazgo, adaptabilidad a entornos cambiantes, pensamiento analítico para la toma de
+                                decisiones, responsabilidad, creatividad e innovación.
                             </p>
                         </div>
                     </div>
@@ -229,8 +168,83 @@
         </div>
     </section>
 
+    <!--SECCIÓN CONTACTO-->
+    <section class="contact" id="contact">
+        <h2 class="heading">¡Contacta <span>conmigo!</span></h2>
+        <form action="#">
+
+            <div class="input-box">
+                <!--NOMBRE -->
+                <div class="input-field">
+                    <input name="txtNombre" type="text" placeholder="Nombre" id="txtNombre" required>
+                    <span class="focus"></span>
+                </div>
+                <div id="alertValidaNombre">
+                    <p id="alertNombre"></p>
+                </div>
+                <!--CORREO -->
+                <div class="input-field">
+                    <input name="txtEmail" type="email" placeholder="Email" id="txtEmail" required>
+                    <span class="focus"></span>
+                </div>
+                <div id="alertValidaEmail">
+                    <p id="alertEmail"></p>
+                </div>
+            </div>
+
+            <!--TELÉFONO -->
+            <div class="input-box">
+                <div class="input-field">
+                    <input name="txtPhone" type="number" placeholder="Número telefónico" id="txtPhone" required>
+                    <span class="focus"></span>
+                </div>
+                <div id="alertValidaPhone">
+                    <p id="alertPhone"></p>
+                </div>
+
+                <!--ASUNTO -->
+                <div class="input-field">
+                    <input name="txtAsunto" type="text" placeholder="Asunto" id="txtAsunto" required>
+                    <span class="focus"></span>
+                </div>
+                <div id="alertValidaAsunto">
+                    <p id="alertAsunto"></p>
+                </div>
+            </div>
+
+            <!--MENSAJE -->
+            <div class="textarea-field">
+                <textarea name="txtMensaje" type="mensaje" placeholder="Tu Mensaje" cols="30" rows="10" id="txtMensaje"
+                    required></textarea>
+                <span class="focus"></span>
+            </div>
+            <div id="alertValidaMensaje">
+                <p id="alertMensaje"></p>
+            </div>
+
+            <div class="btn-box btns">
+                <button type="submit" class="btn" id="btnEnviar">Enviar</button>
+            </div>
+        </form>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2023 Michell Iván Cázares Martínez | Todos los derechos reservados.</p>
+        </div>
+
+        <div class="footer-iconTop">
+            <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+
 
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+        <!-- SCRIPT PARA IMPLEMENTAR SWEET ALERT-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/main.js"></script>
 </body>
 
