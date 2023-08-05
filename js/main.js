@@ -66,12 +66,13 @@ window.onscroll = () => {
 
 /* VALIDACIONES */
 //elementos del html
-let txtNombre= document.getElementById("txtNombre");
-let txtEmail= document.getElementById("txtEmail");
+let txtNombre = document.getElementById("txtNombre");
+let txtEmail = document.getElementById("txtEmail");
 let txtPhone = document.getElementById("txtPhone");
 let txtAsunto = document.getElementById("txtAsunto");
 let txtMensaje = document.getElementById("txtMensaje");
 let btnEnviar = document.getElementById("btnEnviar");
+let formContacto = document.getElementById("formContacto");
 
 let index = [];
 
@@ -96,56 +97,56 @@ let alertValidaMensaje = document.getElementById("alertValidaMensaje");
 // Validación para que el campo nombre solo permita nombres de longitud (3 - 99) caracteres.
 function validarNombre(nombre) {
     if (nombre.length >= 3 && nombre.length < 100) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-
-  function validarAsunto(asunto) {
-    if (asunto.length >= 3 && asunto.length < 100) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-  
-  //Función para validar que lo que se escribe en el campo email cumpla con la regex definida.
-  let regexEmail =
-    /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
-  function validarEmail(email) {
-    if (email != "") {
-      if (regexEmail.test(email)) {
         return true;
-      } else {
+    } else {
         return false;
-      }
-    } else {
-      return false;
     }
-  }
-  
-  function validarMensaje(mensaje) {
+}
+
+
+function validarAsunto(asunto) {
+    if (asunto.length >= 3 && asunto.length < 100) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//Función para validar que lo que se escribe en el campo email cumpla con la regex definida.
+let regexEmail =
+    /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
+function validarEmail(email) {
+    if (email != "") {
+        if (regexEmail.test(email)) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+function validarMensaje(mensaje) {
     if (mensaje.length >= 20 && mensaje.length <= 200) {
-      return true;
+        return true;
     } else {
-      return false;
+        return false;
     }
-  }
+}
 
 
 let regextel = /^(\(\+?\d{2,3}\)[\*|\s|\-|\.]?(([\d][\*|\s|\-|\.]?){6})(([\d][\s|\-|\.]?){2})?|(\+?[\d][\s|\-|\.]?){8}(([\d][\s|\-|\.]?){2}(([\d][\s|\-|\.]?){2})?)?)$/;
 function validarPhone(phone) {
-  if (phone != "") {
-    if (regextel.test(phone)) {
-      return true;
+    if (phone != "") {
+        if (regextel.test(phone)) {
+            return true;
+        } else {
+            return false;
+        }
     } else {
-      return false;
+        return false;
     }
-  } else {
-    return false;
-  }
 }
 
 btnEnviar.addEventListener("click", function (event) {
@@ -175,45 +176,53 @@ btnEnviar.addEventListener("click", function (event) {
 
     if (!validarAsunto(txtAsunto.value.trim())) {
         if (!index.includes("asunto")) {
-            alertValidaPhone.style.color = "red";
-            txtPhone.style.border = "solid thin red";
+            alertValidaAsunto.style.color = "red";
+            txtAsunto.style.border = "solid thin red";
             index.push("asunto");
         }
     }
 
     if (!validarMensaje(txtMensaje.value.trim())) {
         if (!index.includes("mensaje")) {
-            alertValidaPhone.style.color = "red";
-            txtPhone.style.border = "solid thin red";
+            alertValidaMensaje.style.color = "red";
+            txtMensaje.style.border = "solid thin red";
             index.push("mensaje");
         }
     }
 
-    if (!index.includes("nombre") && !index.includes("email") && !index.includes("phone") && !index.includes("asunto")&& !index.includes("mensaje")) {
+    if (!index.includes("nombre") && !index.includes("email") && !index.includes("phone") && !index.includes("asunto") && !index.includes("mensaje")) {
         enviarEmail();
         limpiarTodo();
-        Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: '¡Gracias por comunicarte conmigo!',
-            showConfirmButton: false,
-            timer: 3000
-          })
-    }else{
+    } else {
         Swal.fire({
             position: 'center',
             icon: 'error',
             title: 'Por favor, verifica que los campos esten correctos.',
             showConfirmButton: false,
             timer: 3000
-          })
+        })
     }
-
-
 });
 
 
 
+
+function enviarEmail() {
+    const serviceID = 'service_0s37voo';
+    const templateID = 'template_1fvwnjq';
+    emailjs.sendForm(serviceID, templateID, formContacto)
+        .then(() => {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '¡Gracias por comunicarte conmigo!',
+                showConfirmButton: false,
+                timer: 3000
+            })
+        }, (err) => {
+            alert(JSON.stringify(err));
+        });
+}
 
 
 
@@ -222,18 +231,15 @@ txtNombre.addEventListener("keyup", function (event) {
     event.preventDefault();
     if (!validarNombre(txtNombre.value.trim())) {
         if (!index.includes("nombre")) {
-            alertValidaNombre.insertAdjacentHTML(
-                "afterbegin", ` El <strong> Nombre </strong> no es correcto. <br/> `);
             alertValidaNombre.style.color = "red";
-            txtNombreProducto.style.border = "solid thin red";
+            txtNombre.style.border = "solid thin red";
             index.push("nombre");
         }
-    }//if nombre del producto no cumple las validaciones
+    }//if nombre no cumple las validaciones
     else {
         //quitar alertas
-        alertValidaNombre.innerHTML = "";
         alertNombre.style.display = "none";
-        txtNombreProducto.style.border = "";
+        txtNombre.style.border = "";
         removeAllInstances(index, "nombre");
     }
 
@@ -242,63 +248,54 @@ txtNombre.addEventListener("keyup", function (event) {
 
 txtEmail.addEventListener("keyup", function (event) {
     event.preventDefault();
-    if (!validarDescription(txtDescriptionProducto.value.trim())) {
-        if (!index.includes("description")) {
-            alertValidaDescription.insertAdjacentHTML(
-                "afterbegin", ` La <strong> Descripción </strong> no es correcta. <br/> `);
-            alertValidaDescription.style.color = "red";
-            txtDescriptionProducto.style.border = "solid thin red";
-            index.push("description");
+    if (!validarEmail(txtEmail.value.trim())) {
+        if (!index.includes("email")) {
+            alertValidaEmail.style.color = "red";
+            txtEmail.style.border = "solid thin red";
+            index.push("email");
         }
     }//if description no cumple las validaciones
     else {
         //quitar alertas
-        alertValidaDescription.innerHTML = "";
-        alertDescrip.style.display = "none";
-        txtDescriptionProducto.style.border = "";
-        removeAllInstances(index, "description");
+        alertEmail.style.display = "none";
+        txtEmail.style.border = "";
+        removeAllInstances(index, "email");
     }
 
 });
 
 txtPhone.addEventListener("keyup", function (event) {
     event.preventDefault();
-    if (!validarPrecio(txtPrecioProducto.value.trim())) {
-        if (!index.includes("precio")) {
-            alertValidaPrecioProducto.insertAdjacentHTML(
-                "afterbegin", ` El <strong> Precio </strong> no es correcto. <br/> `);
-            alertValidaPrecioProducto.style.color = "red";
-            txtPrecioProducto.style.border = "solid thin red";
-            index.push("precio");
+    if (!validarPhone(txtPhone.value.trim())) {
+        if (!index.includes("phone")) {
+            alertValidaPhone.style.color = "red";
+            txtPhone.style.border = "solid thin red";
+            index.push("phone");
         }
     }//if precio producto no cumple las validaciones 
     else {
         //quitar alertas
-        alertValidaPrecioProducto.innerHTML = "";
-        alertPrecio.style.display = "none";
-        txtPrecioProducto.style.border = "";
-        removeAllInstances(index, "precio");
+        alertPhone.style.display = "none";
+        txtPhone.style.border = "";
+        removeAllInstances(index, "phone");
     }
 
 });
 
 txtAsunto.addEventListener("keyup", function (event) {
     event.preventDefault();
-    if (!validarPrecio(txtPrecioProducto.value.trim())) {
-        if (!index.includes("precio")) {
-            alertValidaPrecioProducto.insertAdjacentHTML(
-                "afterbegin", ` El <strong> Precio </strong> no es correcto. <br/> `);
-            alertValidaPrecioProducto.style.color = "red";
-            txtPrecioProducto.style.border = "solid thin red";
-            index.push("precio");
+    if (!validarAsunto(txtAsunto.value.trim())) {
+        if (!index.includes("asunto")) {
+            alertValidaAsunto.style.color = "red";
+            txtAsunto.style.border = "solid thin red";
+            index.push("asunto");
         }
-    }//if precio producto no cumple las validaciones 
+    }//if asunto no cumple las validaciones 
     else {
         //quitar alertas
-        alertValidaPrecioProducto.innerHTML = "";
-        alertPrecio.style.display = "none";
-        txtPrecioProducto.style.border = "";
-        removeAllInstances(index, "precio");
+        alertAsunto.style.display = "none";
+        txtAsunto.style.border = "";
+        removeAllInstances(index, "asunto");
     }
 
 });
@@ -306,21 +303,18 @@ txtAsunto.addEventListener("keyup", function (event) {
 
 txtMensaje.addEventListener("keyup", function (event) {
     event.preventDefault();
-    if (!validarPrecio(txtPrecioProducto.value.trim())) {
-        if (!index.includes("precio")) {
-            alertValidaPrecioProducto.insertAdjacentHTML(
-                "afterbegin", ` El <strong> Precio </strong> no es correcto. <br/> `);
-            alertValidaPrecioProducto.style.color = "red";
-            txtPrecioProducto.style.border = "solid thin red";
-            index.push("precio");
+    if (!validarMensaje(txtMensaje.value.trim())) {
+        if (!index.includes("mensaje")) {
+            alertValidaMensaje.style.color = "red";
+            txtMensaje.style.border = "solid thin red";
+            index.push("mensaje");
         }
-    }//if precio producto no cumple las validaciones 
+    }//if mensaje no cumple las validaciones 
     else {
         //quitar alertas
-        alertValidaPrecioProducto.innerHTML = "";
-        alertPrecio.style.display = "none";
-        txtPrecioProducto.style.border = "";
-        removeAllInstances(index, "precio");
+        alertMensaje.style.display = "none";
+        txtMensaje.style.border = "";
+        removeAllInstances(index, "mensaje");
     }
 
 });

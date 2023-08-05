@@ -171,7 +171,7 @@
     <!--SECCIÓN CONTACTO-->
     <section class="contact" id="contact">
         <h2 class="heading">¡Contacta <span>conmigo!</span></h2>
-        <form action="#">
+        <form action="#" id="formContacto">
 
             <div class="input-box">
                 <!--NOMBRE -->
@@ -243,9 +243,15 @@
 
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 
-        <!-- SCRIPT PARA IMPLEMENTAR SWEET ALERT-->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- SCRIPT PARA IMPLEMENTAR SWEET ALERT-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/main.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+        emailjs.init('ikdNLOQdvS2pBZiF-')
+    </script>
 </body>
 
 </html>
