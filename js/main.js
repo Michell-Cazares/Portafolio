@@ -200,7 +200,7 @@ btnEnviar.addEventListener("click", function (event) {
             title: 'Por favor, verifica que los campos esten correctos.',
             showConfirmButton: false,
             timer: 3000
-        })
+        });
     }
 });
 
@@ -218,7 +218,7 @@ function enviarEmail() {
                 title: '¡Gracias por comunicarte conmigo!',
                 showConfirmButton: false,
                 timer: 3000
-            })
+            });
         }, (err) => {
             alert(JSON.stringify(err));
         });
@@ -340,3 +340,69 @@ function limpiarTodo() {
     removeAllInstances(index, "asunto");
     removeAllInstances(index, "mensaje");
 }
+
+
+/* DESCARGAR CV */
+
+let btnDownloadCV = document.getElementById("btnDownloadCV");
+
+btnDownloadCV.addEventListener("click", function (event) {
+    event.preventDefault();
+    downloadCV();
+});
+
+
+function downloadCV() {
+    //Set the File URL.
+    var url = "./src/files/MichellCazares_CV.pdf";
+
+    //Create XMLHTTP Request.
+    var req = new XMLHttpRequest();
+    req.open("GET", url, true);
+    req.responseType = "blob";
+    req.onload = function () {
+        //Convert the Byte Data to BLOB object.
+        var blob = new Blob([req.response], { type: "application/octetstream" });
+
+        //Check the Browser type and download the File.
+        var isIE = false || !!document.documentMode;
+        if (isIE) {
+            window.navigator.msSaveBlob(blob, fileName);
+        } else {
+            var url = window.URL || window.webkitURL;
+            link = url.createObjectURL(blob);
+            var a = document.createElement("a");
+            a.setAttribute("download", "MichellCazares_CV.pdf");
+            a.setAttribute("href", link);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    };
+    req.send();
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: '¡Se ha descargado el archivo!',
+        showConfirmButton: false,
+        timer: 1500
+    });
+
+    // if (req.statusText) {
+    //     Swal.fire({
+    //         position: 'center',
+    //         icon: 'success',
+    //         title: '¡Se ha descargado el archivo!',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //     });
+    // } else {
+    //     Swal.fire({
+    //         position: 'center',
+    //         icon: 'error',
+    //         title: 'Hubo un error al descargar el archivo, intenta de nuevo más tarde.',
+    //         showConfirmButton: false,
+    //         timer: 3000
+    //     });
+    // }
+};
