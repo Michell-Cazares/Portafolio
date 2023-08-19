@@ -57,13 +57,6 @@ window.onscroll = () => {
 
 
 
-
-
-
-
-
-
-
 /* VALIDACIONES */
 //elementos del html
 let txtNombre = document.getElementById("txtNombre");
@@ -75,22 +68,6 @@ let btnEnviar = document.getElementById("btnEnviar");
 let formContacto = document.getElementById("formContacto");
 
 let index = [];
-
-
-//parrafos de las alertas
-let alertNombre = document.getElementById("alertNombre");
-let alertEmail = document.getElementById("alertEmail");
-let alertPhone = document.getElementById("alertPhone");
-let alertAsunto = document.getElementById("alertAsunto");
-let alertMensaje = document.getElementById("alertMensaje");
-
-
-//div para alertas
-let alertValidaNombre = document.getElementById("alertValidaNombre");
-let alertValidaEmail = document.getElementById("alertValidaEmail");
-let alertValidaPhone = document.getElementById("alertValidaPhone");
-let alertValidaAsunto = document.getElementById("alertValidaAsunto");
-let alertValidaMensaje = document.getElementById("alertValidaMensaje");
 
 //se declaran funciones para las validaciones
 
@@ -387,22 +364,4 @@ function downloadCV() {
         showConfirmButton: false,
         timer: 1500
     });
-
-    // if (req.statusText) {
-    //     Swal.fire({
-    //         position: 'center',
-    //         icon: 'success',
-    //         title: '¡Se ha descargado el archivo!',
-    //         showConfirmButton: false,
-    //         timer: 1500
-    //     });
-    // } else {
-    //     Swal.fire({
-    //         position: 'center',
-    //         icon: 'error',
-    //         title: 'Hubo un error al descargar el archivo, intenta de nuevo más tarde.',
-    //         showConfirmButton: false,
-    //         timer: 3000
-    //     });
-    // }
 };
