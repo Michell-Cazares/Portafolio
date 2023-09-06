@@ -54,6 +54,21 @@ window.onscroll = () => {
 
 }
 
+// Swiper de Portafolio
+let swiperPortfolio = new Swiper('.portfolio__container', {
+    cssMode: true,
+    loop: true,
+
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+})
+
 
 
 
@@ -105,7 +120,7 @@ function validarEmail(email) {
 }
 
 function validarMensaje(mensaje) {
-    if (mensaje.length >= 20 && mensaje.length <= 200) {
+    if (mensaje.length >= 3 && mensaje.length <= 200) {
         return true;
     } else {
         return false;
