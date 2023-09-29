@@ -346,7 +346,7 @@ btnDownloadCV.addEventListener("click", function (event) {
 
 function downloadCV() {
     //Set the File URL.
-    var url = "./src/files/MichellCazares_CV.pdf";
+    var url = "./src/files/CV_MichellCazares.pdf";
 
     //Create XMLHTTP Request.
     var req = new XMLHttpRequest();
